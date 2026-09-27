@@ -34,6 +34,47 @@ a {
   text-decoration: none;
 }
 
+.activity-description a,
+.highlight a,
+.day-costs a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+
+.day-costs {
+  margin: 0;
+  background: #f7faf9;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--blue);
+  padding: 16px 18px;
+  width: 100%;
+}
+
+.day-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: start;
+  position: sticky;
+  top: 96px;
+}
+
+.day-content {
+  min-width: 0;
+}
+
+.day-costs strong {
+  color: var(--navy);
+}
+
+.day-costs-list {
+  margin: 0.75rem 0 0 1.25rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 /* NAVIGATION */
 
 nav {
@@ -303,8 +344,8 @@ h3 {
 
 .day {
   display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 60px;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 40px;
   padding: 62px 0;
   border-top: 1px solid var(--line);
 }
@@ -660,6 +701,10 @@ footer p {
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 45px 0;
+  }
+
+  .day-meta {
+    position: static;
   }
 
   .day-title {
