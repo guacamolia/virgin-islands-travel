@@ -3,19 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>US Virgin Islands · Saturday 21st – Friday 27th</title>
+  <title>US Virgin Islands · Saturday 21st – Saturday 28th</title>
 
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #0ea5e9;
+      --accent-dark: #0284c7;
+      --accent-light: #e0f2fe;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg-main); color: var(--text-main); line-height: 1.5; }
+    a { color: var(--accent-dark); text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+
+    nav { background: #0f172a; position: sticky; top: 0; z-index: 100; padding: 1rem 2rem; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { color: #fff; font-weight: 700; font-size: 1.1rem; }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: #cbd5e1; font-size: 0.9rem; font-weight: 400; }
+    .nav-links a:hover { color: #fff; }
+
+    .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; padding: 4rem 2rem; text-align: center; }
+    .hero-content { max-width: 800px; margin: 0 auto; }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+    .hero-subtitle { color: #94a3b8; font-size: 1.1rem; margin-bottom: 2rem; }
+    .trip-meta { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+    .meta-pill { background: rgba(255,255,255,0.1); padding: 0.4rem 1rem; border-radius: 9999px; font-size: 0.85rem; color: #e2e8f0; }
+
+    section, .stay-section, .packing-section { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; }
+    h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main); }
+    .section-label { text-transform: uppercase; font-size: 0.8rem; font-weight: 700; color: var(--accent-dark); letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+
+    .facts-table-wrap { background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border); overflow-x: auto; box-shadow: var(--shadow); }
+    .facts-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+    .facts-table th, .facts-table td { padding: 0.85rem 1.25rem; border-bottom: 1px solid var(--border); }
+    .facts-table thead { background: #f1f5f9; }
+    .facts-table tbody tr:last-child td, .facts-table tbody tr:last-child th { border-bottom: none; }
+
+    .day { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 1.5rem; padding: 1.5rem; box-shadow: var(--shadow); }
+    .day-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 0.5rem; }
+    .day-number { font-size: 0.75rem; font-weight: 700; color: var(--accent-dark); letter-spacing: 0.05em; }
+    .day-date { font-size: 1.25rem; font-weight: 700; }
+    .total-cost-pill { background: var(--accent-light); color: var(--accent-dark); padding: 0.35rem 0.85rem; border-radius: 9999px; font-weight: 600; font-size: 0.85rem; }
+
+    .timeline { display: flex; flex-direction: column; gap: 1rem; }
+    .timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 1rem; align-items: baseline; }
+    .time { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+    .activity-title { font-weight: 600; margin-bottom: 0.2rem; }
+    .activity-description { font-size: 0.9rem; color: #334155; margin-bottom: 0.4rem; }
+    .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .tag { background: #f1f5f9; color: #475569; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 500; }
+    .tag.cost-tag { background: #ecfdf5; color: #047857; font-weight: 600; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+    .card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .card p, .card ul { font-size: 0.9rem; color: #334155; }
+    .card ul { list-style: none; }
+    .card ul li { margin-bottom: 0.3rem; }
+    .card ul li::before { content: "• "; color: var(--accent); font-weight: bold; }
+
+    footer { background: #0f172a; color: #94a3b8; text-align: center; padding: 3rem 1.5rem; margin-top: 4rem; }
+    footer h2 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  </style>
 </head>
 
 <body>
 
   <!-- NAVIGATION -->
-
   <nav>
     <div class="nav-inner">
-      <a href="#top" class="logo">US Virgin Islands</a>
-
+      <a href="#top" class="logo">USVI Exploration</a>
       <div class="nav-links">
         <a href="#overview">Overview</a>
         <a href="#itinerary">Itinerary</a>
@@ -29,1154 +96,471 @@
   <main id="top">
 
     <!-- HERO -->
-
     <header class="hero">
       <div class="hero-content">
-        <div class="eyebrow">
-          Caribbean Escape · November / December 2026
-        </div>
-
-        <h1>
-          US Virgin<br />
-          Islands
-        </h1>
-
+        <div class="eyebrow">Caribbean Escape · November 2026</div>
+        <h1>US Virgin Islands</h1>
         <p class="hero-subtitle">
-          Seven days across St. Thomas, St. John and St. Croix —
-          turquoise water, ferry days, island exploring and a direct
-          flight home.
+          An efficient 8-day trip across St. Thomas, St. John, and St. Croix — island hikes, wreck dives, bioluminescent kayaking, and seamless transit.
         </p>
-
         <div class="trip-meta">
-          <span class="meta-pill">Sat 21 – Fri 27</span>
-          <span class="meta-pill">7 Days · 6 Nights</span>
-          <span class="meta-pill">
-            St. Thomas · St. John · St. Croix
-          </span>
+          <span class="meta-pill">Sat 21 – Sat 28</span>
+          <span class="meta-pill">8 Days · 7 Nights</span>
+          <span class="meta-pill">St. Thomas · St. John · St. Croix</span>
         </div>
       </div>
     </header>
 
-
-    <!-- QUICK FACTS -->
-
+    <!-- OVERVIEW -->
     <section id="overview">
-
-    <div class="facts-section">
-      <div class="facts-inner">
-
-
-        <h2>Overview</h2>
-
-        <div class="facts-table-wrap">
-          <table class="facts-table">
-            <thead>
-              <tr>
-                <th>Day</th>
-                <th>Weekday</th>
-                <th>Date</th>
-                <th>Main activity</th>
-                <th>Accommodation</th>
-                <th>Logistics</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Day 1</th>
-                <td>Saturday</td>
-                <td>21st</td>
-                <td><strong>Arrival</strong> in St. Thomas</td>
-                <td>Hotel</td>
-                <td>Airport transfer + light walking</td>
-              </tr>
-              <tr>
-                <th>Day 2</th>
-                <td>Sunday</td>
-                <td>22nd</td>
-                <td><strong>Boating</strong> in St. Thomas</td>
-                <td>Hotel</td>
-                <td>Private boat + short drives</td>
-              </tr>
-              <tr>
-                <th>Day 3</th>
-                <td>Monday</td>
-                <td>23rd</td>
-                <td><strong>St. John</strong> via ferry · hiking + snorkeling</td>
-                <td>Hotel</td>
-                <td>Ferry + walking / local transport</td>
-              </tr>
-              <tr>
-                <th>Day 4</th>
-                <td>Tuesday</td>
-                <td>24th</td>
-                <td><strong>St. John</strong> full day · national park</td>
-                <td>Hotel</td>
-                <td>Ferry + walking / beach trails</td>
-              </tr>
-              <tr>
-                <th>Day 5</th>
-                <td>Wednesday</td>
-                <td>25th</td>
-                <td><strong>Afternoon + night dive</strong> in St. Croix</td>
-                <td>Villa</td>
-                <td>Drive + shore access</td>
-              </tr>
-              <tr>
-                <th>Day 6</th>
-                <td>Thursday</td>
-                <td>26th</td>
-                <td><strong>Two-dive</strong> day in St. Croix</td>
-                <td>Villa</td>
-                <td>Boat + shore logistics</td>
-              </tr>
-              <tr>
-                <th>Day 7</th>
-                <td>Friday</td>
-                <td>27th</td>
-                <td><strong>Kayak tour</strong> + easy island day</td>
-                <td>Villa</td>
-                <td>Drive + beach / local movement</td>
-              </tr>
-              <tr>
-                <th>Day 8</th>
-                <td>Saturday</td>
-                <td>28th</td>
-                <td><strong>Direct flight</strong> back to NYC</td>
-                <td>Villa</td>
-                <td>Airport transfer + check-out</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="section-label">Summary</div>
+      <h2>Overview</h2>
+      <div class="facts-table-wrap">
+        <table class="facts-table">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Weekday</th>
+              <th>Date</th>
+              <th>Main Activity</th>
+              <th>Base Accommodation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Day 1</th>
+              <td>Saturday</td>
+              <td>21st</td>
+              <td><strong>Arrival</strong> in St. Thomas + ferry & Jeep pickup in St. John</td>
+              <td><a href="https://homes-and-villas.marriott.com/en/properties/40331328-cruz-bay-dolphin-suites-ocean-view-unit-4?start_date=2026-11-21&nights=3&number_of_guests=1&adults=1" target="_blank" rel="noreferrer">Dolphin Suites</a> (St. John)</td>
+            </tr>
+            <tr>
+              <th>Day 2</th>
+              <td>Sunday</td>
+              <td>22nd</td>
+              <td><strong>St. John</strong> · National Park trail hiking</td>
+              <td><a href="https://homes-and-villas.marriott.com/en/properties/40331328-cruz-bay-dolphin-suites-ocean-view-unit-4?start_date=2026-11-21&nights=3&number_of_guests=1&adults=1" target="_blank" rel="noreferrer">Dolphin Suites</a> (St. John)</td>
+            </tr>
+            <tr>
+              <th>Day 3</th>
+              <td>Monday</td>
+              <td>23rd</td>
+              <td><strong>St. John</strong> · Trunk Bay underwater snorkel trail</td>
+              <td><a href="https://homes-and-villas.marriott.com/en/properties/40331328-cruz-bay-dolphin-suites-ocean-view-unit-4?start_date=2026-11-21&nights=3&number_of_guests=1&adults=1" target="_blank" rel="noreferrer">Dolphin Suites</a> (St. John)</td>
+            </tr>
+            <tr>
+              <th>Day 4</th>
+              <td>Tuesday</td>
+              <td>24th</td>
+              <td><strong>St. John</strong> beach day + Cape Air flight to St. Croix</td>
+              <td><a href="https://www.airbnb.com/rooms/30213959?check_in=2026-11-24&check_out=2026-11-28&guests=2&adults=2&s=67&unique_share_id=e0abd6b2-56ba-4e16-952c-c1c299cc08d1" target="_blank" rel="noreferrer">St. Croix Airbnb Villa</a></td>
+            </tr>
+            <tr>
+              <th>Day 5</th>
+              <td>Wednesday</td>
+              <td>25th</td>
+              <td><strong>St. Croix</strong> · 2-tank boat dive + guided night dive</td>
+              <td><a href="https://www.airbnb.com/rooms/30213959?check_in=2026-11-24&check_out=2026-11-28&guests=2&adults=2&s=67&unique_share_id=e0abd6b2-56ba-4e16-952c-c1c299cc08d1" target="_blank" rel="noreferrer">St. Croix Airbnb Villa</a></td>
+            </tr>
+            <tr>
+              <th>Day 6</th>
+              <td>Thursday</td>
+              <td>26th</td>
+              <td><strong>St. Croix</strong> · Morning 2-tank boat dive</td>
+              <td><a href="https://www.airbnb.com/rooms/30213959?check_in=2026-11-24&check_out=2026-11-28&guests=2&adults=2&s=67&unique_share_id=e0abd6b2-56ba-4e16-952c-c1c299cc08d1" target="_blank" rel="noreferrer">St. Croix Airbnb Villa</a></td>
+            </tr>
+            <tr>
+              <th>Day 7</th>
+              <td>Friday</td>
+              <td>27th</td>
+              <td><strong>St. Croix</strong> · Bioluminescent kayak tour (No-Fly surface interval)</td>
+              <td><a href="https://www.airbnb.com/rooms/30213959?check_in=2026-11-24&check_out=2026-11-28&guests=2&adults=2&s=67&unique_share_id=e0abd6b2-56ba-4e16-952c-c1c299cc08d1" target="_blank" rel="noreferrer">St. Croix Airbnb Villa</a></td>
+            </tr>
+            <tr>
+              <th>Day 8</th>
+              <td>Saturday</td>
+              <td>28th</td>
+              <td><strong>Direct Flight</strong> home to NYC (UA 1410)</td>
+              <td>Departure</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-
     </section>
-
 
     <!-- ITINERARY -->
-
     <section id="itinerary">
-
-      <div class="section-label">
-        Saturday 21 — Friday 27
-      </div>
-
-      <h2>The itinerary</h2>
-
+      <div class="section-label">Daily Schedule</div>
+      <h2>The Itinerary</h2>
 
       <!-- DAY 1 -->
-
       <div class="day">
-
-        <div class="day-meta">
+        <div class="day-header">
           <div>
             <div class="day-number">DAY 01</div>
-            <div class="day-date">Saturday · 21st</div>
+            <div class="day-date">Saturday · November 21</div>
           </div>
-
-          <div class="day-costs">
-            <strong>Estimated cost for the day:</strong>
-            <ul class="day-costs-list">
-              <li>Flight: about $1,500 per person.</li>
-              <li>Airport transfer / taxi: roughly $20–$40 per person.</li>
-              <li>Hotel + dinner: typically $150–$250 total depending on the property and restaurant choice.</li>
-            </ul>
-          </div>
+          <div class="total-cost-pill">Estimated Total Cost: ~$1,885</div>
         </div>
 
-        <div class="day-content">
-          <div class="day-title">
-            Arrive in St. Thomas
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">12:00 PM</div>
+            <div class="activity">
+              <div class="activity-title">Flight Arrival in St. Thomas</div>
+              <div class="activity-description">Land at Cyril E. King Airport (STT) on United Flight 1529.</div>
+              <div class="tags"><span class="tag">United 1529</span><span class="tag cost-tag">Cost: $1,500/person</span></div>
+            </div>
           </div>
 
-          <div class="timeline">
-
-            <div class="timeline-item">
-              <div class="time">12:00 PM</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  United 1529 arrival
-                </div>
-
-                <div class="activity-description">
-                  Flight departs at 7:00 AM and arrives in St. Thomas
-                  around 12:00 PM. Land at Cyril E. King Airport and
-                  make our way to the hotel.
-                </div>
-
-                <span class="tag">United 1529</span>
-                <span class="tag">Arrival</span>
-              </div>
+          <div class="timeline-item">
+            <div class="time">12:30 PM</div>
+            <div class="activity">
+              <div class="activity-title">Ferry to St. John</div>
+              <div class="activity-description">Take the passenger ferry from Charlotte Amalie to Cruz Bay, St. John (45 mins).</div>
+              <div class="tags"><span class="tag">Transit</span><span class="tag cost-tag">Cost: $8.15/person</span></div>
             </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Late PM</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Check in & settle in
-                </div>
-
-                <div class="activity-description">
-                  Unpack, take in the view and officially switch
-                  into vacation mode.
-                </div>
-
-                <span class="tag">Hotel</span>
-              </div>
-            </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Evening</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  First island dinner
-                </div>
-
-                <div class="activity-description">
-                  Sunset drinks and our first dinner overlooking
-                  the Caribbean.
-                </div>
-
-                <span class="tag">Dinner</span>
-              </div>
-            </div>
-
           </div>
 
+          <div class="timeline-item">
+            <div class="time">1:30 PM</div>
+            <div class="activity">
+              <div class="activity-title">Pick Up Jeep Rental</div>
+              <div class="activity-description">Pick up vehicle at <a href="https://dolphinjeeprental.com/" target="_blank" rel="noreferrer">Dolphin Jeep Rental</a> in Cruz Bay.</div>
+              <div class="tags"><span class="tag">Vehicle</span><span class="tag cost-tag">Cost: $175/day</span></div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time">3:00 PM</div>
+            <div class="activity">
+              <div class="activity-title">Check-in at Dolphin Suites</div>
+              <div class="activity-description">Check in at <a href="https://homes-and-villas.marriott.com/en/properties/40331328-cruz-bay-dolphin-suites-ocean-view-unit-4?start_date=2026-11-21&nights=3&number_of_guests=1&adults=1" target="_blank" rel="noreferrer">Cruz Bay Dolphin Suites (Ocean View Unit 4)</a>.</div>
+              <div class="tags"><span class="tag">Accommodation</span><span class="tag cost-tag">Cost: $1,000 total stay</span></div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time">7:00 PM</div>
+            <div class="activity">
+              <div class="activity-title">Dinner in Cruz Bay</div>
+              <div class="activity-description">Evening dinner in town.</div>
+              <div class="tags"><span class="tag">Dining</span><span class="tag cost-tag">Cost: ~$50/person</span></div>
+            </div>
+          </div>
         </div>
       </div>
-
 
       <!-- DAY 2 -->
-
       <div class="day">
-
-        <div class="day-meta">
+        <div class="day-header">
           <div>
             <div class="day-number">DAY 02</div>
-            <div class="day-date">Sunday · 22nd</div>
+            <div class="day-date">Sunday · November 22</div>
           </div>
-
-          <div class="day-costs">
-            <strong>Estimated cost for the day:</strong>
-            <ul class="day-costs-list">
-              <li>Boat day / sail charter: roughly $300–$600 total for the group, depending on the vessel and whether it is private.</li>
-              <li>Sunfish / small sailing option: about $60–$120 per person for a rental or lesson-based session.</li>
-              <li>Optional providers: <a href="https://www.stthomasadventures.com/" target="_blank" rel="noreferrer">St. Thomas Adventures</a> or <a href="https://stthomassailingcenter.com/" target="_blank" rel="noreferrer">St. Thomas Sailing Center</a>.</li>
-            </ul>
-          </div>
+          <div class="total-cost-pill">Estimated Total Cost: ~$225</div>
         </div>
 
-        <div class="day-content">
-          <div class="day-title">
-            Boating
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">8:00 AM</div>
+            <div class="activity">
+              <div class="activity-title">Jeep Rental (Day 2)</div>
+              <div class="activity-description">Drive to Virgin Islands National Park trails.</div>
+              <div class="tags"><span class="tag">Vehicle</span><span class="tag cost-tag">Cost: $175/day</span></div>
+            </div>
           </div>
 
-          <div class="timeline">
-
-            <div class="timeline-item">
-              <div class="time">Morning</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Slow breakfast
-                </div>
-
-                <div class="activity-description">
-                  Coffee, breakfast and a leisurely start to
-                  Thanksgiving.
-                </div>
-
-                <span class="tag">Slow Morning</span>
-              </div>
+          <div class="timeline-item">
+            <div class="time">10:00 AM</div>
+            <div class="activity">
+              <div class="activity-title">National Park Hiking</div>
+              <div class="activity-description">Hike Ram Head Trail (2.7 mi) or Reef Bay Trail (4.3 mi).</div>
+              <div class="tags"><span class="tag">Activity</span><span class="tag cost-tag">Cost: Free / Park Entry</span></div>
             </div>
-
-
-            <div class="timeline-item">
-              <div class="time">11:00 AM</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  St. Thomas beach
-                </div>
-
-                <div class="activity-description">
-                  Spend the morning swimming, reading and getting
-                  some serious Caribbean sun.
-                </div>
-
-                <span class="tag">Beach</span>
-              </div>
-            </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Afternoon</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Pool & downtime
-                </div>
-
-                <div class="activity-description">
-                  Keep Thanksgiving intentionally relaxed.
-                </div>
-
-                <span class="tag">Relax</span>
-              </div>
-            </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Evening</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Thanksgiving dinner
-                </div>
-
-                <div class="activity-description">
-                  Special dinner somewhere beautiful. Reserve well
-                  ahead because it is Thanksgiving.
-                </div>
-
-                <span class="tag">Thanksgiving</span>
-              </div>
-            </div>
-
           </div>
 
+          <div class="timeline-item">
+            <div class="time">2:00 PM</div>
+            <div class="activity">
+              <div class="activity-title">Lunch in Cruz Bay</div>
+              <div class="activity-description">Post-hike lunch.</div>
+              <div class="tags"><span class="tag">Dining</span><span class="tag cost-tag">Cost: ~$50/person</span></div>
+            </div>
+          </div>
         </div>
       </div>
-
 
       <!-- DAY 3 -->
-
       <div class="day">
-
-        <div class="day-meta">
+        <div class="day-header">
           <div>
             <div class="day-number">DAY 03</div>
-            <div class="day-date">Monday · 23rd</div>
+            <div class="day-date">Monday · November 23</div>
           </div>
-
-          <div class="day-costs">
-            <strong>Estimated cost for the day:</strong>
-            <ul class="day-costs-list">
-              <li>Ferry: about $8.15 per person each way.</li>
-              <li>Late lunch / snacks: roughly $20–$50 per person.</li>
-              <li>Park / local transport: typically $10–$30, depending on rides and extras.</li>
-            </ul>
-          </div>
+          <div class="total-cost-pill">Estimated Total Cost: ~$250</div>
         </div>
 
-        <div class="day-content">
-          <div class="day-title">
-            St. John · National Park 
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">8:00 AM</div>
+            <div class="activity">
+              <div class="activity-title">Jeep Rental (Day 3)</div>
+              <div class="activity-description">Drive to Trunk Bay along North Shore Road.</div>
+              <div class="tags"><span class="tag">Vehicle</span><span class="tag cost-tag">Cost: $175/day</span></div>
+            </div>
           </div>
 
-          <div class="timeline">
-
-            <div class="timeline-item">
-              <div class="time">9:00 AM</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Ferry to St. John
-                </div>
-
-                <div class="activity-description">
-                  Take the Red Hook to Cruz Bay ferry from
-                  <a href="https://stjohnticketing.com/red-hook-cruz-bay/" target="_blank" rel="noreferrer">St. John Ticketing</a>.
-                  It costs about $8.15 per person, departs every hour,
-                  and arrives in Cruz Bay around 9:30 AM.
-                </div>
-
-                <span class="tag">Ferry</span>
-                <span class="tag">$8.15</span>
-              </div>
+          <div class="timeline-item">
+            <div class="time">10:00 AM</div>
+            <div class="activity">
+              <div class="activity-title">Trunk Bay Underwater Snorkel Trail</div>
+              <div class="activity-description">Snorkel the marked trail at Trunk Bay and rent gear on site.</div>
+              <div class="tags"><span class="tag">Snorkeling</span><span class="tag cost-tag">Cost: $25 gear rental + $5 entry</span></div>
             </div>
-
-
-            <div class="timeline-item">
-              <div class="time">10:00 AM</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Virgin Islands National Park hiking
-                </div>
-
-                <div class="activity-description">
-                  Spend the hiking window from 10:00 AM to 3:00 PM in the
-                  park. Two standout options are the coast walk at
-                  <a href="https://www.alltrails.com/trail/us-virgin-islands/saint-john/ram-head-trail?u=i&sh=6iriux" target="_blank" rel="noreferrer">Ram Head Trail</a>
-                  (2.7 miles, moderate, 1–1.5 hrs) and the forest-and-waterfall route at
-                  <a href="https://www.alltrails.com/trail/us/saint-john/reef-bay-trail?u=i&sh=6iriux" target="_blank" rel="noreferrer">Reef Bay Trail</a>
-                  (4.3 miles, moderate, 2.5–3 hrs). A third good option is
-                  <a href="https://www.alltrails.com/trail/us-virgin-islands/saint-john/cinnamon-bay-trail?u=i&sh=6iriux" target="_blank" rel="noreferrer">Cinnamon Bay Trail</a>
-                  (2 miles, moderate, 1.5–2 hrs).
-                </div>
-
-                <span class="tag">National Park</span>
-                <span class="tag">Hiking</span>
-              </div>
-            </div>
-
-
-            <div class="timeline-item">
-              <div class="time">3:00 PM</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Late lunch in Cruz Bay
-                </div>
-
-                <div class="activity-description">
-                  Head back toward town for a relaxed late lunch after the
-                  hiking block, before heading back to St. Thomas.
-                </div>
-
-                <span class="tag">Lunch</span>
-              </div>
-            </div>
-
-
           </div>
 
-
-          <div class="highlight">
-            <strong>National Park highlight:</strong>
-            Virgin Islands National Park covers roughly 60% of
-            St. John. The island is packed with short scenic hikes,
-            bays and beach stops, and the next day is built around
-            Trunk Bay and the underwater snorkel trail.
+          <div class="timeline-item">
+            <div class="time">2:00 PM</div>
+            <div class="activity">
+              <div class="activity-title">Beach & Lunch</div>
+              <div class="activity-description">Lunch and beach stop at Maho Bay.</div>
+              <div class="tags"><span class="tag">Beach</span><span class="tag cost-tag">Cost: ~$45/person</span></div>
+            </div>
           </div>
-
         </div>
       </div>
-
 
       <!-- DAY 4 -->
-
       <div class="day">
-
-        <div class="day-meta">
+        <div class="day-header">
           <div>
             <div class="day-number">DAY 04</div>
-            <div class="day-date">Tuesday · 24th</div>
+            <div class="day-date">Tuesday · November 24</div>
           </div>
-
-          <div class="day-costs">
-            <strong>Estimated cost for the day:</strong>
-            <ul class="day-costs-list">
-              <li>Ferry: about $8.15 per person each way.</li>
-              <li>Snorkel / beach activity: about $15–$60 per person, depending on rental and gear.</li>
-              <li>Beach lunch / snacks: roughly $20–$50 per person.</li>
-            </ul>
-          </div>
+          <div class="total-cost-pill">Estimated Total Cost: ~$380</div>
         </div>
 
-        <div class="day-content">
-          <div class="day-title">
-            St. John · Trunk Bay snorkel day
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">10:00 AM</div>
+            <div class="activity">
+              <div class="activity-title">Return Jeep Rental</div>
+              <div class="activity-description">Drop off vehicle at Dolphin Jeep Rental in Cruz Bay.</div>
+              <div class="tags"><span class="tag">Vehicle</span><span class="tag cost-tag">Cost: Included</span></div>
+            </div>
           </div>
 
-          <div class="timeline">
-
-            <div class="timeline-item">
-              <div class="time">9:00 AM</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Ferry from St. Thomas to Cruz Bay
-                </div>
-
-                <div class="activity-description">
-                  Take the Red Hook to Cruz Bay ferry from
-                  <a href="https://stjohnticketing.com/red-hook-cruz-bay/" target="_blank" rel="noreferrer">St. John Ticketing</a>.
-                  It costs about $8.15 per person, departs every hour,
-                  and arrives in Cruz Bay around 9:30 AM.
-                </div>
-
-                <span class="tag">Ferry</span>
-                <span class="tag">$8.15</span>
-              </div>
+          <div class="timeline-item">
+            <div class="time">6:00 PM</div>
+            <div class="activity">
+              <div class="activity-title">Ferry to St. Thomas</div>
+              <div class="activity-description">Ferry from Cruz Bay to Red Hook, followed by taxi transfer to STT airport.</div>
+              <div class="tags"><span class="tag">Transit</span><span class="tag cost-tag">Cost: $8.15 ferry + $20 taxi</span></div>
             </div>
-
-
-            <div class="timeline-item">
-              <div class="time">10:00 AM</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Trunk Bay underwater snorkel trail
-                </div>
-
-                <div class="activity-description">
-                  Head to Trunk Bay and snorkel the underwater trail at
-                  <a href="https://www.nps.gov/thingstodo/trunk-bay-underwater-snorkel-trail.htm" target="_blank" rel="noreferrer">Trunk Bay Underwater Snorkel Trail</a>.
-                  This is the main snorkeling focus of the day and the best spot to explore the underwater trail.
-                </div>
-
-                <span class="tag">Must Do</span>
-                <span class="tag">Snorkeling</span>
-              </div>
-            </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Afternoon</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Chill at Baho Bay & beach time
-                </div>
-
-                <div class="activity-description">
-                  After the snorkel, take time to relax on the beach,
-                  slow down and enjoy a casual afternoon by the water.
-                  A beach stop at Baho Bay works well for a more mellow reset.
-                </div>
-
-                <span class="tag">Beach</span>
-                <span class="tag">Relax</span>
-              </div>
-            </div>
-
-
-            <div class="timeline-item">
-              <div class="time">8:00 PM</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Return ferry to St. Thomas
-                </div>
-
-                <div class="activity-description">
-                  Head back to Cruz Bay and catch the ferry back to St.
-                  Thomas, arriving around 8:25 PM.
-                </div>
-
-                <span class="tag">Return</span>
-                <span class="tag">8:25 PM</span>
-              </div>
-            </div>
-
           </div>
 
+          <div class="timeline-item">
+            <div class="time">7:45 PM</div>
+            <div class="activity">
+              <div class="activity-title">Flight to St. Croix (STX)</div>
+              <div class="activity-description">Fly via Cape Air Flight 9K 8641, landing at 7:45 PM.</div>
+              <div class="tags"><span class="tag">Cape Air</span><span class="tag cost-tag">Cost: ~$150/person flight</span></div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time">8:30 PM</div>
+            <div class="activity">
+              <div class="activity-title">Check-in at St. Croix Airbnb</div>
+              <div class="activity-description">Arrive and check in at the <a href="https://www.airbnb.com/rooms/30213959?check_in=2026-11-24&check_out=2026-11-28&guests=2&adults=2&s=67&unique_share_id=e0abd6b2-56ba-4e16-952c-c1c299cc08d1" target="_blank" rel="noreferrer">St. Croix Villa</a>.</div>
+              <div class="tags"><span class="tag">Accommodation</span><span class="tag cost-tag">Cost: ~$200/night</span></div>
+            </div>
+          </div>
         </div>
       </div>
-
 
       <!-- DAY 5 -->
-
       <div class="day">
-
-        <div class="day-meta">
+        <div class="day-header">
           <div>
             <div class="day-number">DAY 05</div>
-            <div class="day-date">Tuesday · 24th</div>
+            <div class="day-date">Wednesday · November 25</div>
           </div>
-
-          <div class="day-costs">
-            <strong>Estimated cost for the day:</strong>
-            <ul class="day-costs-list">
-              <li>Cape Air flight: roughly $100–$200 per person depending on booking timing.</li>
-              <li>Dive package: about $450 USD total for the 3-day / 2-tank plan, with a max of 6 people on the boat.</li>
-              <li>Villa / meals: roughly $150–$250 total for the day depending on groceries and restaurant choice.</li>
-            </ul>
-          </div>
+          <div class="total-cost-pill">Estimated Total Cost: ~$250</div>
         </div>
 
-        <div class="day-content">
-          <div class="day-title">
-            St. Croix · late-evening arrival
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">1:00 PM</div>
+            <div class="activity">
+              <div class="activity-title">2-Tank Boat Dive</div>
+              <div class="activity-description">First dive block with <a href="https://n2scubadiving.com/" target="_blank" rel="noreferrer">N2Scuba</a>.</div>
+              <div class="tags"><span class="tag">SCUBA</span><span class="tag cost-tag">Cost: Included in $450 3-day dive package</span></div>
+            </div>
           </div>
 
-          <div class="timeline">
-
-            <div class="timeline-item">
-              <div class="time">Evening</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Cape Air 9K 8641 to St. Croix
-                </div>
-
-                <div class="activity-description">
-                  Fly from St. Thomas to St. Croix in the evening on
-                  Cape Air flight 9K 8641, arriving at 7:45 PM. This moves
-                  the St. Croix portion of the trip onto Tuesday night.
-                </div>
-
-                <span class="tag">Cape Air 9K 8641</span>
-                <span class="tag">Travel</span>
-              </div>
+          <div class="timeline-item">
+            <div class="time">6:30 PM</div>
+            <div class="activity">
+              <div class="activity-title">Guided Night Dive</div>
+              <div class="activity-description">Night dive session off the Frederiksted Pier.</div>
+              <div class="tags"><span class="tag">Night Dive</span><span class="tag cost-tag">Cost: $80 add-on</span></div>
             </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Afternoon</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Check in & settle in
-                </div>
-
-                <div class="activity-description">
-                  Settle into the new villa and explore the surrounding
-                  area before the dive block begins.
-                </div>
-
-                <span class="tag">Hotel</span>
-              </div>
-            </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Afternoon</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Afternoon dive with <a href="https://n2scubadiving.com/" target="_blank" rel="noreferrer">N2Scuba</a>
-                </div>
-
-                <div class="activity-description">
-                  First dive of the St. Croix portion, with the local package
-                  set at 3 days / 2 tanks each for $450 USD and a max of 6
-                  people on the boat. A great way to keep the ocean time
-                  efficient and easy.
-                </div>
-
-                <span class="tag">SCUBA</span>
-                <span class="tag">2 Tank</span>
-              </div>
-            </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Night</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Night dive
-                </div>
-
-                <div class="activity-description">
-                  Keep the evening focused on a night dive after a short
-                  recovery break. This adds a memorable Caribbean night
-                  experience without crowding the day.
-                </div>
-
-                <span class="tag">Night Dive</span>
-              </div>
-            </div>
-
           </div>
-
         </div>
       </div>
-
 
       <!-- DAY 6 -->
-
       <div class="day">
-
-        <div class="day-meta">
+        <div class="day-header">
           <div>
             <div class="day-number">DAY 06</div>
-            <div class="day-date">Thursday · 26th</div>
+            <div class="day-date">Thursday · November 26</div>
           </div>
-
-          <div class="day-costs">
-            <strong>Estimated cost for the day:</strong>
-            <ul class="day-costs-list">
-              <li>Dive package: about $450 USD total for the 3-day / 2-tank plan.</li>
-              <li>Meals / snacks / hydration: roughly $25–$60 per person.</li>
-              <li>Villa / local transport: about $100–$200 total split across the group.</li>
-            </ul>
-          </div>
+          <div class="total-cost-pill">Estimated Total Cost: ~$60</div>
         </div>
 
-        <div class="day-content">
-          <div class="day-title">
-            St. Croix · two-dive day
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">8:30 AM</div>
+            <div class="activity">
+              <div class="activity-title">Morning 2-Tank Dive</div>
+              <div class="activity-description">Second boat dive block with <a href="https://n2scubadiving.com/" target="_blank" rel="noreferrer">N2Scuba</a>.</div>
+              <div class="tags"><span class="tag">SCUBA</span><span class="tag cost-tag">Cost: Included in $450 dive package</span></div>
+            </div>
           </div>
 
-          <div class="timeline">
-
-            <div class="timeline-item">
-              <div class="time">Morning</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  First dive of the day
-                </div>
-
-                <div class="activity-description">
-                  Full dive day on St. Croix with two dives planned around
-                  the operator's conditions, depth profiles and surface intervals.
-                </div>
-
-                <span class="tag">SCUBA</span>
-              </div>
+          <div class="timeline-item">
+            <div class="time">2:00 PM</div>
+            <div class="activity">
+              <div class="activity-title">Lunch & Surface Interval</div>
+              <div class="activity-description">Equipment rinse and afternoon surface interval.</div>
+              <div class="tags"><span class="tag">Rest</span><span class="tag cost-tag">Cost: ~$60/person lunch</span></div>
             </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Afternoon</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Second dive of the day
-                </div>
-
-                <div class="activity-description">
-                  Keep the afternoon focused on the second tank and then
-                  recover with lunch and a slow evening after the boat.
-                </div>
-
-                <span class="tag">2 Tank</span>
-              </div>
-            </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Evening</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Easy dinner + rest
-                </div>
-
-                <div class="activity-description">
-                  Early dinner, hydration and a very relaxed night after two dives.
-                </div>
-
-                <span class="tag">Dinner</span>
-              </div>
-            </div>
-
           </div>
-
-
-          <div class="highlight">
-            <strong>Diving package:</strong>
-            The dive plan fits the local package from
-            <a href="https://n2scubadiving.com/" target="_blank" rel="noreferrer">N2Scuba</a>:
-            3 days / 2 tanks each for $450 USD, with a max of 6 people on the boat.
-          </div>
-
         </div>
       </div>
-
 
       <!-- DAY 7 -->
-
       <div class="day">
-
-        <div class="day-meta">
+        <div class="day-header">
           <div>
             <div class="day-number">DAY 07</div>
-            <div class="day-date">Friday · 27th</div>
+            <div class="day-date">Friday · November 27</div>
           </div>
-
-          <div class="day-costs">
-            <strong>Estimated cost for the day:</strong>
-            <ul class="day-costs-list">
-              <li>Bioluminescent kayak tour: roughly $60–$120 per person depending on provider and booking.</li>
-              <li>Optional dive / beach rental: about $20–$60 per person if added.</li>
-              <li>Meals / local drinks: roughly $25–$75 per person.</li>
-            </ul>
-          </div>
+          <div class="total-cost-pill">Estimated Total Cost: ~$150</div>
         </div>
 
-        <div class="day-content">
-          <div class="day-title">
-            St. Croix · kayak + easy island day
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">10:00 AM</div>
+            <div class="activity">
+              <div class="activity-title">No-Fly Surface Interval / Beach Day</div>
+              <div class="activity-description">Maintain a minimum 18-hour surface interval before Saturday flight.</div>
+              <div class="tags"><span class="tag">Surface Interval</span><span class="tag cost-tag">Cost: ~$50/person meals</span></div>
+            </div>
           </div>
 
-          <div class="timeline">
-
-            <div class="timeline-item">
-              <div class="time">Morning</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Slow breakfast & easy start
-                </div>
-
-                <div class="activity-description">
-                  Keep the morning relaxed after the dive sequence and enjoy a
-                  slower start with coffee and a calm beach breakfast.
-                </div>
-
-                <span class="tag">Recovery</span>
-              </div>
+          <div class="timeline-item">
+            <div class="time">5:45 PM</div>
+            <div class="activity">
+              <div class="activity-title"><a href="https://seathrukayaksvi.com/" target="_blank" rel="noreferrer">Bioluminescent Kayak Tour</a>*</div>
+              <div class="activity-description">Guided night paddle in Salt River Bay. Starts at 5:45 PM and lasts about 2 hours. *Must be booked early.</div>
+              <div class="tags"><span class="tag">Kayaking</span><span class="tag cost-tag">Cost: ~$100/person</span></div>
             </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Late AM</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Bioluminescent kayak tour
-                </div>
-
-                <div class="activity-description">
-                  Take a guided night paddle on St. Croix to see the glowing
-                  water and enjoy one of the island's most memorable nighttime
-                  experiences.
-                </div>
-
-                <span class="tag">Night Paddle</span>
-              </div>
-            </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Afternoon</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Optional easy dive or beach time
-                </div>
-
-                <div class="activity-description">
-                  If energy allows, keep this as a low-key beach and water day.
-                  A short dive is optional, but the day should stay mellow and
-                  flexible.
-                </div>
-
-                <span class="tag">Beach</span>
-                <span class="tag">Optional</span>
-              </div>
-            </div>
-
           </div>
-
         </div>
       </div>
-
 
       <!-- DAY 8 -->
-
       <div class="day">
-
-        <div class="day-meta">
+        <div class="day-header">
           <div>
             <div class="day-number">DAY 08</div>
-            <div class="day-date">Saturday · 28th</div>
+            <div class="day-date">Saturday · November 28</div>
           </div>
-
-          <div class="day-costs">
-            <strong>Estimated cost for the day:</strong>
-            <ul class="day-costs-list">
-              <li>Final flight: about $1,500 per person.</li>
-              <li>Airport transfer / rides: roughly $20–$40 per person.</li>
-              <li>Final meals / snacks: roughly $20–$50 before departure.</li>
-            </ul>
-          </div>
+          <div class="total-cost-pill">Estimated Total Cost: ~$1,530</div>
         </div>
 
-        <div class="day-content">
-          <div class="day-title">
-            Fly home
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">12:00 PM</div>
+            <div class="activity">
+              <div class="activity-title">Villa Checkout & Airport Transfer</div>
+              <div class="activity-description">Check out of Airbnb and take taxi to Henry E. Rohlsen Airport (STX).</div>
+              <div class="tags"><span class="tag">Transit</span><span class="tag cost-tag">Cost: ~$30 taxi</span></div>
+            </div>
           </div>
 
-          <div class="timeline">
-
-            <div class="timeline-item">
-              <div class="time">Morning</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  Final breakfast & pack up
-                </div>
-
-                <div class="activity-description">
-                  Keep the morning easy, pack and enjoy the last slow moments on the island.
-                </div>
-
-                <span class="tag">Departure</span>
-              </div>
+          <div class="timeline-item">
+            <div class="time">3:25 PM</div>
+            <div class="activity">
+              <div class="activity-title">United Flight UA 1410 Departure</div>
+              <div class="activity-description">Direct return flight to NYC departing at 3:25 PM.</div>
+              <div class="tags"><span class="tag">United 1410</span><span class="tag cost-tag">Cost: ~$1,500 flight</span></div>
             </div>
-
-
-            <div class="timeline-item">
-              <div class="time">Afternoon</div>
-
-              <div class="activity">
-                <div class="activity-title">
-                  United UA 1410 departure
-                </div>
-
-                <div class="activity-description">
-                  Final departure from St. Croix at 3:25 PM on United flight
-                  UA 1410 back to New York.
-                </div>
-
-                <span class="tag">United 3:25 PM</span>
-                <span class="tag">Flight Home</span>
-              </div>
-            </div>
-
           </div>
-
         </div>
       </div>
-
 
     </section>
 
-
     <!-- WHERE WE STAY -->
+    <section id="stay">
+      <div class="section-label">Accommodations</div>
+      <h2>Where We Stay</h2>
 
-    <div class="stay-section" id="stay">
-
-      <div class="stay-inner">
-
-        <div class="section-label">
-          Where we stay
+      <div class="grid-3">
+        <div class="card">
+          <h3>St. John Base</h3>
+          <p><strong><a href="https://homes-and-villas.marriott.com/en/properties/40331328-cruz-bay-dolphin-suites-ocean-view-unit-4?start_date=2026-11-21&nights=3&number_of_guests=1&adults=1" target="_blank" rel="noreferrer">Cruz Bay Dolphin Suites (Unit 4)</a></strong></p>
+          <p>Nights: Nov 21 – Nov 24 (3 Nights)</p>
+          <p>Cost: $1,000 total stay</p>
         </div>
 
-        <h2>
-          Three islands,<br />
-          three bases.
-        </h2>
-
-        <div class="stay-grid">
-
-          <div class="stay-card">
-            <div class="stay-location">Sat 21 — Sun 22</div>
-
-            <h3>St. Thomas</h3>
-
-            <p>
-              Two nights near the water, with easy access to
-              beaches, the boat day and a relaxed evening before
-              the ferry days to St. John.
-            </p>
-          </div>
-
-
-          <div class="stay-card">
-            <div class="stay-location">Mon 23 — Tue 24</div>
-
-            <h3>St. John</h3>
-
-            <p>
-              Two full days by ferry with Virgin Islands National
-              Park, Trunk Bay, hiking and underwater snorkeling.
-            </p>
-          </div>
-
-
-          <div class="stay-card">
-            <div class="stay-location">Wed 25 — Sat 28</div>
-
-            <h3>St. Croix</h3>
-
-            <p>
-              Four nights on St. Croix, giving us time for diving,
-              island exploring, beach time and the final direct flight
-              back to New York.
-            </p>
-          </div>
-
+        <div class="card">
+          <h3>St. Croix Base</h3>
+          <p><strong><a href="https://www.airbnb.com/rooms/30213959?check_in=2026-11-24&check_out=2026-11-28&guests=2&adults=2&s=67&unique_share_id=e0abd6b2-56ba-4e16-952c-c1c299cc08d1" target="_blank" rel="noreferrer">Private St. Croix Airbnb Villa</a></strong></p>
+          <p>Nights: Nov 24 – Nov 28 (4 Nights)</p>
+          <p>Cost: ~$200 / night</p>
         </div>
       </div>
-    </div>
-
-    <!-- PACKING -->
-
-    <div class="packing-section" id="packing">
-
-      <div class="packing-inner">
-
-        <div class="section-label">
-          Packing
-        </div>
-
-        <h2>
-          Light luggage.<br />
-          Lots of water.
-        </h2>
-
-        <div class="packing-grid">
-
-          <div class="packing-card">
-            <h3>Beach</h3>
-
-            <ul>
-              <li>Swimsuits</li>
-              <li>Cover-up</li>
-              <li>Reef-friendly sunscreen</li>
-              <li>Sunglasses</li>
-              <li>Hat</li>
-              <li>Beach sandals</li>
-              <li>Reusable water bottle</li>
-            </ul>
-          </div>
-
-
-          <div class="packing-card">
-            <h3>Exploring</h3>
-
-            <ul>
-              <li>Comfortable walking shoes</li>
-              <li>Lightweight day bag</li>
-              <li>Light layers</li>
-              <li>Phone / camera</li>
-              <li>Portable charger</li>
-              <li>Bug repellent</li>
-              <li>Small dry bag</li>
-            </ul>
-          </div>
-
-
-          <div class="packing-card">
-            <h3>Diving</h3>
-
-            <ul>
-              <li>Dive certification card</li>
-              <li>Dive computer</li>
-              <li>Rash guard</li>
-              <li>Underwater camera</li>
-              <li>Dry clothes for after diving</li>
-              <li>Any personal dive gear</li>
-              <li>Plenty of hydration</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
+    </section>
 
     <!-- LOGISTICS -->
-
     <section id="logistics">
+      <div class="section-label">Transportation & Rules</div>
+      <h2>Key Logistics</h2>
 
-      <div class="section-label">
-        Good to know
+      <div class="grid-3">
+        <div class="card">
+          <h3>St. John Jeep</h3>
+          <p>Rented via <a href="https://dolphinjeeprental.com/" target="_blank" rel="noreferrer">Dolphin Jeep Rental</a> in Cruz Bay at $175/day. Essential for island trail access and beach parking.</p>
+        </div>
+
+        <div class="card">
+          <h3>St. Croix Car</h3>
+          <p>Budget about $60/day for a rental car on St. Croix to handle island exploration and easy beach access.</p>
+        </div>
+
+        <div class="card">
+          <h3>Diving Package</h3>
+          <p><a href="https://n2scubadiving.com/" target="_blank" rel="noreferrer">N2Scuba</a> 3-day / 2-tank package ($450 total) + optional night dive ($80).</p>
+        </div>
+
+        <div class="card">
+          <h3>No-Fly Rule</h3>
+          <p>18-hour mandatory surface interval strictly observed on Friday, Nov 27 prior to Saturday afternoon departure (UA 1410).</p>
+        </div>
       </div>
-
-      <h2>
-        A few logistics<br />
-        worth knowing.
-      </h2>
-
-      <div class="logistics-grid">
-
-        <div class="logistics-card">
-
-          <h3>St. John</h3>
-
-          <p>
-            There is no airport on St. John, so the island is
-            reached by ferry or private boat from St. Thomas.
-          </p>
-
-          <ul>
-            <li>Start early for Trunk Bay.</li>
-            <li>Parking at popular beaches can fill quickly.</li>
-            <li>Bring water, sunscreen and snorkeling gear.</li>
-            <li>Leave time to enjoy Cruz Bay before returning.</li>
-          </ul>
-
-        </div>
-
-
-        <div class="logistics-card">
-
-          <h3>St. Croix</h3>
-
-          <p>
-            St. Croix is intentionally separated from the
-            St. Thomas portion of the trip so that it feels
-            like its own island experience rather than a rushed
-            add-on.
-          </p>
-
-          <ul>
-            <li>Travel to St. Croix on Wed 25.</li>
-            <li>Use the island days for exploring and beach time.</li>
-            <li>Keep the final day light before the direct flight.</li>
-            <li>Fly home from St. Croix on Fri 27.</li>
-          </ul>
-
-        </div>
-
-
-        <div class="logistics-card">
-
-          <h3>Flying after diving</h3>
-
-          <p>
-            The itinerary intentionally leaves a full day between
-            the final dive and the flight home. DAN's current
-            guidance suggests a minimum surface interval of
-            18 hours after multiple dives in a day or multiple
-            days of diving, with longer intervals reducing risk.
-          </p>
-
-          <ul>
-            <li>Boat day: Sun 22</li>
-            <li>St. John days: Mon 23 / Tue 24</li>
-            <li>Flight home: Fri 27</li>
-          </ul>
-
-        </div>
-
-
-        <div class="logistics-card">
-
-          <h3>One important distinction</h3>
-
-          <p>
-            Trunk Bay is the snorkeling stop on the St. John day.
-            The diving portion of the trip belongs on St. Croix,
-            rather than treating Trunk Bay as a scuba site.
-          </p>
-
-          <ul>
-            <li>St. Thomas → boat day + arrival</li>
-            <li>St. John → hiking + snorkeling</li>
-            <li>St. Croix → island exploring</li>
-            <li>Fri 27 → direct flight home</li>
-          </ul>
-
-        </div>
-
-      </div>
-
     </section>
 
   </main>
 
-
-  <!-- FOOTER -->
-
   <footer>
-
-    <h2>See you in paradise.</h2>
-
-    <p>
-      St. Thomas · St. John · St. Croix
-    </p>
-
-    <div class="footer-date">
-      Saturday 21 — Friday 27
-    </div>
-
+    <h2>See You in Paradise</h2>
+    <p>St. Thomas · St. John · St. Croix</p>
   </footer>
 
 </body>
